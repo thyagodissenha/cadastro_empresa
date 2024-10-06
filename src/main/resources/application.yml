@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: cadastro
+  #jpa:
+  #  properties:
+  #    hibernate:
+  #      dialect: org.hibernate.dialect.PostgresDialect
+
+server:
+  port: 8080
+  servlet:
+    context-path: '/api/'
