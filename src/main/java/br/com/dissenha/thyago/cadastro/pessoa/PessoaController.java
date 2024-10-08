@@ -1,10 +1,14 @@
 package br.com.dissenha.thyago.cadastro.pessoa;
 
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.List;
+import java.net.URI;
 
 @RestController
 @RequestMapping("/pessoa")
@@ -18,23 +22,27 @@ public class PessoaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<DadosDetalharPessoa> buscarPessoa(@PathVariable Long id) {
-        return null;
+        return ResponseEntity.ok(pessoaService.buscarPessoa(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<DadosListarPessoa>> listarPessoa(){
-        return null;
+    public ResponseEntity<Page<DadosListarPessoa>> listarPessoa(
+            @PageableDefault(size = 20) Pageable paginacao
+    ){
+        return ResponseEntity.ok(pessoaService.listarPessoas(paginacao));
     }
 
     @PostMapping
     @Transactional
-    public ResponseEntity<DadosCadastrarPessoa> cadastrarPessoa(@RequestBody Pessoa pessoa){
-        return null;
+    public ResponseEntity<DadosDetalharPessoa> cadastrarPessoa(@RequestBody DadosCadastrarPessoa dados, UriComponentsBuilder uriBuilder) {
+        DadosDetalharPessoa dadosDetalharPessoa = pessoaService.cadastrarPessoa(dados);
+        URI uri = uriBuilder.path("pessoa/{id}").buildAndExpand(dadosDetalharPessoa.id()).toUri();
+        return ResponseEntity.created(uri).body(dadosDetalharPessoa);
     }
 
     @PutMapping
     @Transactional
-    public ResponseEntity<DadosAtualizarPessoa> atualizarPessoa(@RequestBody Pessoa pessoa){
-        return null;
+    public ResponseEntity<DadosDetalharPessoa> atualizarPessoa(@RequestBody DadosAtualizarPessoa dados){
+        return ResponseEntity.ok(pessoaService.atualizarPessoa(dados));
     }
 }

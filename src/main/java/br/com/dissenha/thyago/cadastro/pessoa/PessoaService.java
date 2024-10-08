@@ -1,8 +1,11 @@
 package br.com.dissenha.thyago.cadastro.pessoa;
 
+import br.com.dissenha.thyago.cadastro.infra.exception.ValidacaoException;
+import br.com.dissenha.thyago.cadastro.util.Util;
+import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class PessoaService {
@@ -14,18 +17,27 @@ public class PessoaService {
     }
 
     public DadosDetalharPessoa buscarPessoa(Long id) {
-        return null;
+        return pessoaRepository.findById(id)
+                .map(DadosDetalharPessoa::new)
+                .orElseThrow(() -> new ValidacaoException("Pessoa Não encontrada!"));
     }
 
-    public List<DadosListarPessoa> listarPessoas() {
-        return null;
+    public Page<DadosListarPessoa> listarPessoas(Pageable paginacao) {
+        return pessoaRepository.findAll(paginacao).map(DadosListarPessoa::new);
     }
 
+    @Transactional
     public DadosDetalharPessoa cadastrarPessoa(DadosCadastrarPessoa dadosCadastrarPessoa) {
-        return null;
+        Pessoa pessoa = new Pessoa(dadosCadastrarPessoa);
+        return new DadosDetalharPessoa(pessoaRepository.save(pessoa));
     }
 
+    @Transactional
     public DadosDetalharPessoa atualizarPessoa(DadosAtualizarPessoa dadosAtualizarPessoa) {
-        return null;
+        if(!pessoaRepository.existsById(dadosAtualizarPessoa.id()))
+            throw new ValidacaoException("Pessoa não encontrado!");
+        Pessoa pessoa = pessoaRepository.getReferenceById(dadosAtualizarPessoa.id());
+        Util.copiarPropriedadesNaoNulas(dadosAtualizarPessoa, pessoa);
+        return new DadosDetalharPessoa(pessoa);
     }
 }

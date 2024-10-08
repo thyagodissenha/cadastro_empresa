@@ -21,9 +21,17 @@ public class Pessoa {
     private Long id;
     private String cpfCnpj;
     private String nome;
-    private String nomeFantasia;
+    private String nomeSocial;
     private String email;
     private LocalDate aniversario;
     private String token;
+
+    public Pessoa(DadosCadastrarPessoa dadosCadastrarPessoa) {
+        this.cpfCnpj = dadosCadastrarPessoa.cpfCnpj();
+        this.nome = dadosCadastrarPessoa.nome();
+        this.nomeSocial = dadosCadastrarPessoa.nomeSocial();
+        this.email = dadosCadastrarPessoa.email();
+        this.aniversario = dadosCadastrarPessoa.dataNascimento();
+    }
 
 }
