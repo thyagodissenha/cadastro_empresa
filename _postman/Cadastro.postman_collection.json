@@ -1,0 +1,115 @@
+{
+	"info": {
+		"_postman_id": "9b15a430-9889-485c-8a7b-b136c7a97ab0",
+		"name": "Cadastro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10902649"
+	},
+	"item": [
+		{
+			"name": "Hello World",
+			"item": [
+				{
+					"name": "Hello World",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pessoa",
+			"item": [
+				{
+					"name": "Buscar Pessoa",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/pessoa/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pessoa",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Pessoa",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/pessoa",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pessoa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar Pessoa",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Thyago Taborda Dissenha\",\r\n    \"nomeSocial\": \"\",\r\n    \"cpfCnpj\": \"00697849902\",\r\n    \"email\": \"thyago.dissenha@gmail.com\",\r\n    \"dataNascimento\": \"1981-08-13\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/pessoa",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pessoa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alterar Pessoa",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 10,\r\n    \"nome\": \"Thyago Taborda Dissenha\",\r\n    \"nomeSocial\": \"\",\r\n    \"email\": \"thyago.dissenha@gmail.com\",\r\n    \"dataNascimento\": \"1981-08-13\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/pessoa",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pessoa"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
