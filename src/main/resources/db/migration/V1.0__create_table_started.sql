@@ -1,3 +1,9 @@
+CREATE TABLE IF NOT EXISTS usuarios(
+    id BIGSERIAL NOT NULL PRIMARY KEY,
+    login VARCHAR(100) NOT NULL,
+    senha VARCHAR(255) NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS pessoa(
     id BIGSERIAL PRIMARY KEY,
     cpf_cnpj VARCHAR(14) NOT NULL,
@@ -19,3 +25,5 @@ CREATE TABLE IF NOT EXISTS cadastro(
         FOREIGN KEY(pessoa_id)
             REFERENCES pessoa(id)
 );
+
+INSERT INTO usuarios (login, senha) VALUES('admin','admin');
