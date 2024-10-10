@@ -13,7 +13,16 @@
 					"name": "Hello World",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/helloworld",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"helloworld"
+							]
+						}
 					},
 					"response": []
 				}
@@ -25,6 +34,16 @@
 				{
 					"name": "Buscar Pessoa",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -43,6 +62,16 @@
 				{
 					"name": "Listar Pessoa",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -60,6 +89,16 @@
 				{
 					"name": "Cadastrar Pessoa",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -86,11 +125,21 @@
 				{
 					"name": "Alterar Pessoa",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 10,\r\n    \"nome\": \"Thyago Taborda Dissenha\",\r\n    \"nomeSocial\": \"\",\r\n    \"email\": \"thyago.dissenha@gmail.com\",\r\n    \"dataNascimento\": \"1981-08-13\"\r\n}",
+							"raw": "{\r\n    \"id\": 5,\r\n    \"nomeSocial\": \"Thyago Taborda Dissenha\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -104,6 +153,50 @@
 							],
 							"path": [
 								"pessoa"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"token\",jsonData.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"admin\",\r\n    \"senha\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"login"
 							]
 						}
 					},
