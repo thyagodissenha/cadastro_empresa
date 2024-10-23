@@ -1,26 +1,30 @@
 package br.com.dissenha.thyago.cadastro.usuario;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.*;
+import java.io.Serial;
+import java.util.Collection;
+import java.util.List;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.io.Serial;
-import java.io.Serializable;
-import java.util.Collection;
-import java.util.List;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@Table(name = "usuarios")
 @Entity(name = "Usuario")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @EqualsAndHashCode(of = "id")
-
-public class Usuario implements UserDetails, Serializable {
+public class Usuario implements UserDetails{
 
     @Serial
     private static final long serialVersionUID = 1L;

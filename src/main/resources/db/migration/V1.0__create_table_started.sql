@@ -26,4 +26,4 @@ CREATE TABLE IF NOT EXISTS cadastro(
             REFERENCES pessoa(id)
 );
 
-INSERT INTO usuarios (login, senha) VALUES('admin','admin');
+INSERT INTO usuarios (login, senha) VALUES('admin','$2a$10$Y50UaMFOxteibQEYLrwuHeehHYfcoafCopUazP12.rqB41bsolF5.');
