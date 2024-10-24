@@ -3,7 +3,9 @@ package br.com.dissenha.thyago.cadastro.usuario;
 import java.io.Serial;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
+import org.hibernate.annotations.UuidGenerator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,8 +32,9 @@ public class Usuario implements UserDetails{
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue
+    @UuidGenerator
+    private UUID id;
     private String login;
     private String senha;
 

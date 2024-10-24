@@ -1,7 +1,9 @@
 package br.com.dissenha.thyago.cadastro.pessoa;
 
+import java.util.UUID;
+
 public record DadosListarPessoa(
-        Long id,
+        UUID id,
         String nome
 ) {
     public DadosListarPessoa(Pessoa pessoa) {

@@ -5,8 +5,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Entity
 @NoArgsConstructor
@@ -17,8 +19,10 @@ import java.time.LocalDate;
 @EqualsAndHashCode(of = "id")
 public class Pessoa {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Id
+    @GeneratedValue
+    @UuidGenerator
+    private UUID id;
     private String cpfCnpj;
     private String nome;
     private String nomeSocial;

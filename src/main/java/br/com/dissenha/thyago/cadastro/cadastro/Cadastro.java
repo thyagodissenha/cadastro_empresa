@@ -5,6 +5,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
+import org.hibernate.annotations.UuidGenerator;
+
+import java.util.UUID;
 
 @Entity
 @NoArgsConstructor
@@ -15,8 +18,10 @@ import lombok.*;
 @EqualsAndHashCode(of = "id")
 public class Cadastro {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Id
+    @GeneratedValue
+    @UuidGenerator
+    private UUID id;
     private String email;
     private String nomeFantasia;
     private String sobrenomeSocial;

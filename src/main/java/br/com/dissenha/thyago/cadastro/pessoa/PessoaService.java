@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class PessoaService {
 
@@ -16,7 +18,7 @@ public class PessoaService {
         this.pessoaRepository = pessoaRepository;
     }
 
-    public DadosDetalharPessoa buscarPessoa(Long id) {
+    public DadosDetalharPessoa buscarPessoa(UUID id) {
         return pessoaRepository.findById(id)
                 .map(DadosDetalharPessoa::new)
                 .orElseThrow(() -> new ValidacaoException("Pessoa Não encontrada!"));

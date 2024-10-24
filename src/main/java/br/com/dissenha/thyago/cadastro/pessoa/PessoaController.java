@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/pessoa")
@@ -21,7 +22,7 @@ public class PessoaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DadosDetalharPessoa> buscarPessoa(@PathVariable Long id) {
+    public ResponseEntity<DadosDetalharPessoa> buscarPessoa(@PathVariable UUID id) {
         return ResponseEntity.ok(pessoaService.buscarPessoa(id));
     }
 
