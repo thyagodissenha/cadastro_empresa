@@ -1,12 +1,12 @@
 package br.com.dissenha.thyago.cadastro.pessoa;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import br.com.dissenha.thyago.cadastro.cadastro.Cadastro;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -17,7 +17,10 @@ import java.util.UUID;
 @Getter
 @Builder
 @EqualsAndHashCode(of = "id")
-public class Pessoa {
+public class Pessoa implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue
@@ -29,6 +32,9 @@ public class Pessoa {
     private String email;
     private LocalDate aniversario;
     private String token;
+    @OneToOne
+    @JoinColumn(name = "id")
+    Cadastro cadastro;
 
     public Pessoa(DadosCadastrarPessoa dadosCadastrarPessoa) {
         this.cpfCnpj = dadosCadastrarPessoa.cpfCnpj();

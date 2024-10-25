@@ -1,12 +1,12 @@
 package br.com.dissenha.thyago.cadastro.cadastro;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import br.com.dissenha.thyago.cadastro.pessoa.Pessoa;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
@@ -16,7 +16,10 @@ import java.util.UUID;
 @Getter
 @Builder
 @EqualsAndHashCode(of = "id")
-public class Cadastro {
+public class Cadastro implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue
@@ -26,5 +29,9 @@ public class Cadastro {
     private String nomeFantasia;
     private String sobrenomeSocial;
     private Boolean empresa;
+
+    @OneToOne
+    @JoinColumn(name = "pessoa_id")
+    Pessoa pessoa;
 
 }

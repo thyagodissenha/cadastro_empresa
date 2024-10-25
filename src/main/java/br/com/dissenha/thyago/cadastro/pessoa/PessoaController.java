@@ -1,6 +1,7 @@
 package br.com.dissenha.thyago.cadastro.pessoa;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -35,7 +36,7 @@ public class PessoaController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<DadosDetalharPessoa> cadastrarPessoa(@RequestBody DadosCadastrarPessoa dados, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<DadosDetalharPessoa> cadastrarPessoa(@RequestBody @Valid DadosCadastrarPessoa dados, UriComponentsBuilder uriBuilder) {
         DadosDetalharPessoa dadosDetalharPessoa = pessoaService.cadastrarPessoa(dados);
         URI uri = uriBuilder.path("pessoa/{id}").buildAndExpand(dadosDetalharPessoa.id()).toUri();
         return ResponseEntity.created(uri).body(dadosDetalharPessoa);
@@ -43,7 +44,7 @@ public class PessoaController {
 
     @PutMapping
     @Transactional
-    public ResponseEntity<DadosDetalharPessoa> atualizarPessoa(@RequestBody DadosAtualizarPessoa dados){
+    public ResponseEntity<DadosDetalharPessoa> atualizarPessoa(@RequestBody @Valid DadosAtualizarPessoa dados){
         return ResponseEntity.ok(pessoaService.atualizarPessoa(dados));
     }
 }
