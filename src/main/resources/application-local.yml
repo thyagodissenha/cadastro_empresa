@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5433/cadastro_db
+    url: jdbc:postgresql://localhost:5433/register_db
     username: myuser
     password: secret
   jpa:

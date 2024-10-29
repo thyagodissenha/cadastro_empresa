@@ -1,29 +1,29 @@
-CREATE TABLE IF NOT EXISTS usuarios(
+CREATE TABLE IF NOT EXISTS users(
     id UUID PRIMARY KEY,
     login VARCHAR(100) NOT NULL,
-    senha VARCHAR(255) NOT NULL
+    password VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS pessoa(
+CREATE TABLE IF NOT EXISTS person(
     id UUID PRIMARY KEY,
     cpf_cnpj VARCHAR(14) NOT NULL,
-    nome VARCHAR(255) NOT NULL,
-    nome_social VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    name_social VARCHAR(255) NOT NULL,
     email VARCHAR(255),
-    aniversario DATE,
+    birthday DATE,
     token VARCHAR(255)
 );
 
-CREATE TABLE IF NOT EXISTS cadastro(
+CREATE TABLE IF NOT EXISTS register(
     id UUID PRIMARY KEY,
     email VARCHAR(255),
-    nome_fantasia VARCHAR(255) NOT NULL,
-    sobrenome_social VARCHAR(255) NOT NULL,
-    empresa BOOLEAN NOT NULL,
-    pessoa_id UUID,
-    CONSTRAINT fk_pessoa
-        FOREIGN KEY(pessoa_id)
-            REFERENCES pessoa(id)
+    doing_business_as VARCHAR(255) NOT NULL,
+    lastname_social VARCHAR(255) NOT NULL,
+    company BOOLEAN NOT NULL,
+    person_id UUID,
+    CONSTRAINT fk_person
+        FOREIGN KEY(person_id)
+            REFERENCES person(id)
 );
 
-INSERT INTO usuarios (id, login, senha) VALUES(gen_random_uuid(),'admin','$2a$12$u/zNVJU7S3ZVQyS9seASMeiz8ys0QrYNn.fnbSwHQwFaKW1fpCmOC');
+INSERT INTO users (id, login, password) VALUES(gen_random_uuid(),'admin','$2a$12$u/zNVJU7S3ZVQyS9seASMeiz8ys0QrYNn.fnbSwHQwFaKW1fpCmOC');

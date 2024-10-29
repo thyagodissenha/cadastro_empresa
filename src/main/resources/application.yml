@@ -4,7 +4,7 @@ server:
     context-path: '/api/'
 spring:
   application:
-    name: cadastro
+    name: register
   jpa:
     show-sql: true
     properties:
@@ -16,6 +16,6 @@ spring:
 
 api:
   security:
-    issuer: "Cadastro Empresa"
+    issuer: "Register"
     token:
       secret: ${JWT_SECRET:12345678}

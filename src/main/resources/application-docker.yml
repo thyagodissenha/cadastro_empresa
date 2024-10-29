@@ -1,5 +1,5 @@
 spring:
   datasource:
-    url: jdbc:postgresql://posgres-db:5432/cadastro_db
+    url: jdbc:postgresql://posgres-db:5432/register_db
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
